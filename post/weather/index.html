@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Weather Prediction using KMeans, HAC and Decision Trees | Ryan Ondocin</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Brief Overview: This project deals with Weather Forecating data recorded from 9am to the following day (9am) throughout 49 different locations in Australia. We will use Kmeans, Hierarchical Agglomerative Clustering and Decision Trees to predict whether or not it will rain the following day. Even with my tenuous grasp of meteorology, I believe that components such as humidity, pressure, and location will be key players in predicting our target variable, RainTomorrow.">
+    <meta name="generator" content="Hugo 0.79.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Weather Prediction using KMeans, HAC and Decision Trees" />
+<meta property="og:description" content="Brief Overview: This project deals with Weather Forecating data recorded from 9am to the following day (9am) throughout 49 different locations in Australia. We will use Kmeans, Hierarchical Agglomerative Clustering and Decision Trees to predict whether or not it will rain the following day. Even with my tenuous grasp of meteorology, I believe that components such as humidity, pressure, and location will be key players in predicting our target variable, RainTomorrow." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/post/weather/" />
+<meta property="article:published_time" content="2019-09-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-09-05T00:00:00+00:00" />
+<meta itemprop="name" content="Weather Prediction using KMeans, HAC and Decision Trees">
+<meta itemprop="description" content="Brief Overview: This project deals with Weather Forecating data recorded from 9am to the following day (9am) throughout 49 different locations in Australia. We will use Kmeans, Hierarchical Agglomerative Clustering and Decision Trees to predict whether or not it will rain the following day. Even with my tenuous grasp of meteorology, I believe that components such as humidity, pressure, and location will be key players in predicting our target variable, RainTomorrow.">
+<meta itemprop="datePublished" content="2019-09-05T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-09-05T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2481">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Weather Prediction using KMeans, HAC and Decision Trees"/>
+<meta name="twitter:description" content="Brief Overview: This project deals with Weather Forecating data recorded from 9am to the following day (9am) throughout 49 different locations in Australia. We will use Kmeans, Hierarchical Agglomerative Clustering and Decision Trees to predict whether or not it will rain the following day. Even with my tenuous grasp of meteorology, I believe that components such as humidity, pressure, and location will be key players in predicting our target variable, RainTomorrow."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  
+  
+  <header class="cover bg-top" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F36%2Fa2%2F94%2F36a2943acb6338268b1f6afb84becac0.jpg&amp;f=1&amp;nofb=1');">
+    <div class="pb3-m pb6-l bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Ryan Ondocin
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/contact/" title="Experience page">
+              Experience
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/post/" title="Projects page">
+              Projects
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+<a href="https://www.linkedin.com/in/ryan-ondocin-5699b7138/" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+<a href="https://github.com/Ryanondocin2019?tab=repositories" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">Weather Prediction using KMeans, HAC and Decision Trees</h1>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph6">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        PROJECTS
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+
+
+      <h1 class="f1 athelas mt3 mb1">Weather Prediction using KMeans, HAC and Decision Trees</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-09-05T00:00:00Z">September 5, 2019</time>
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-three-thirds-l"><h1 id="brief-overview">Brief Overview:</h1>
+<p>This project deals with Weather Forecating data recorded from 9am to the following day (9am) throughout 49 different locations in Australia. We will use Kmeans, Hierarchical Agglomerative Clustering and Decision Trees to predict whether or not it will rain the following day. Even with my tenuous grasp of meteorology, I believe that components such as humidity, pressure, and location will be key players in predicting our target variable, RainTomorrow. At any rate, let&rsquo;s dive into the data.</p>
+<h3 id="training-data-attributes">Training Data Attributes:</h3>
+<ul>
+<li>Location: The location name of the weather station</li>
+<li>MinTemp: The minimum temperature in degrees celsius</li>
+<li>MaxTemp: The maximum temperature in degrees celsius</li>
+<li>Rainfall: The amount of rainfall recorded for the day in mm</li>
+<li>Evaporation: The so-called Class A pan evaporation (mm) in the 24 hours to 9am</li>
+<li>Sunshine: The number of hours of bright sunshine in the day.</li>
+<li>WindGustDir: The direction of the strongest wind gust in the 24 hours to midnight</li>
+<li>WindGustSpeed: The speed (km/h) of the strongest wind gust in the 24 hours to midnight</li>
+<li>WindDir: Direction of the wind</li>
+<li>WindSpeed: Wind speed (km/hr) averaged over 10 minutes</li>
+<li>Humidity: Humidity (percent)</li>
+<li>Pressure: Atmospheric pressure (hpa) reduced to mean sea level</li>
+<li>Cloud: Fraction of sky obscured by cloud This is measured in “oktas”, which are a unit of eigths. It records how many eigths of the sky are obscured by cloud. A 0 measure indicates completely clear sky whilst an 8 indicates that it is completely overcast.</li>
+<li>Temp: Temperature (degrees C)</li>
+<li>RainTodayBoolean: 1 if precipitation (mm) in the 24 hours to 9am exceeds 1mm, otherwise 0</li>
+<li>RainTomorrow: The target variable. Did it rain tomorrow?</li>
+</ul>
+<h3 id="master-performance-table">Master Performance Table</h3>
+<h3 id="exploratory-data-analysis">Exploratory Data Analysis</h3>
+<p><figure>
+    <img src="https://i.ibb.co/WvFB6gv/Screen-Shot-2020-12-21-at-5-40-59-PM.png"/> 
+</figure>
+<br />
+<figure>
+    <img src="https://i.ibb.co/R2gCfdZ/Screen-Shot-2020-12-21-at-5-41-24-PM.png"/> 
+</figure>
+<br />
+<figure>
+    <img src="https://i.ibb.co/2S8hG9Y/Screen-Shot-2020-12-21-at-5-42-30-PM.png"/> <figcaption>
+            <h4>Correlation Heatmap of Features</h4>
+        </figcaption>
+</figure>
+</p>
+<h3 id="initial-data-quality-issues">Initial Data Quality Issues:</h3>
+<p>Instantly, I notice the difference in scale for most of our attributes. Having 16 dimensions that contain different units of measurement(mm Rainfall, km/hr Wind, hpa Pressure etc..) can have devastating affects on how our distance-based functions operate. I also notice the presence of Numerical (continuous/discrete) and categorical data. The target variable is binary which is typical of classification problems normally,(opposed to clustering) but we will need to initially figure out the nature of our missing data.</p>
+<p>Whether the absence of data is completely independent of observable params of interest(highly unlikely since forecasting data is almost always going to have some effect on other attributes (MCAR), Missing at Random (independent of RainTomorrow (unbiased)(unlikely) or Missing not at random (most likely here).</p>
+<p>Missing not a random is common of real world data and could be due to data collection inconsistencies across multiple regions or the inference from one variable to another(Rainfall and rain i.e. if mm of Rainfall was calculated we obviously know if it rained or not).</p>
+<p>Additionally, all attributes have some correlation to rainfall so missing values can sometime allow us to infer on other values(no attributes such as the color of house; all meteorological data are included). High humidity and low pressure for example are generally required for rainfall so if a value is missing it could be because a location automatically infers the other attribute.</p>
+<ul>
+<li>
+<p>Evaporation/Sunshine/Cloud also seems like a difficult thing to measure across an entire continent, perhaps due to cost of implementation/laziness.</p>
+</li>
+<li>
+<p>Perhaps on extreme cases of weather (&gt;50 mm RainFall) commonly missing attributes such as Evaporation may be taken</p>
+</li>
+<li>
+<p>Evaporation, Sunshine, Pressure, Temp have a (-) correlation to Rainfall which is intuitive given, the conditions you&rsquo;d imagine rain to occur in.</p>
+</li>
+<li>
+<p>MinTemp, WindGustSpeed,WindSpeed, Humidity, Cloud all have (+) relationships to rainfall</p>
+</li>
+</ul>
+<h3 id="key-points-thus-far">Key Points Thus Far:</h3>
+<ul>
+<li>
+<p>The Evaporation, Sunshine and Cloud attributes have an overwhelming amount of missing values ~ 43%.<br />
+This could perhaps be due to an issue in the data collection process. These will need to be further investigated in the context of our data</p>
+</li>
+<li>
+<p>I will group the observations by location to see if there are any patterns of data inconsistency. It doesn&rsquo;t seem like any values were wrongly entered (plausible descriptive statistics even with noisy outliers (391 mm possible/ -4 degrees celsius) yet many values are still missing</p>
+</li>
+</ul>
+<h3 id="finding-missing-values-by-locaton">Finding Missing Values by Locaton</h3>
+<figure>
+    <img src="https://i.ibb.co/PGBFBRk/Screen-Shot-2020-12-21-at-5-51-58-PM.png"/> 
+</figure>
+
+<h4 id="potential-data-quality-issues-that-relate-to-our-model-cont">Potential Data Quality Issues that relate to our model (cont.)</h4>
+<ul>
+<li>If a location measures an attribute(s) (WindGusDir/WindDir, MinTemp/MaxTemp, Pressure&hellip;etc.) they generally are consistent.</li>
+<li>There are data collection issues for certain locations. Albany and NewCastle, for example, have no measures for WindGustDir or WindGustSpeed.</li>
+<li>Evaporation and sunshine are two commonly missed metrics by locations as well. (Albury, BadgerysCreek, Ballaret, Gold Coast, MountGinini, NewCastle, Nhil, Norah Head, Penrith, SalmonGuns, Tuggeranong, Uluru, Walpole, Witchcliffe and Wollongong).</li>
+</ul>
+<h3 id="imputing-missing-numerical-values-with-their-locational-meanmedian">Imputing missing numerical values with their locational mean/median</h3>
+<p>This will prevent us from underfitting the data if we initially imputed missing numerical variables with the entire columns mean/median.<br />
+<figure>
+    <img src="https://i.ibb.co/yf3XvrD/Screen-Shot-2020-12-21-at-5-56-40-PM.png"/> 
+</figure>
+</p>
+<h3 id="imputing-other-highly-correlated-values-with-their-missing-counterparts">Imputing other highly correlated values with their missing counterparts</h3>
+<figure>
+    <img src="https://i.ibb.co/h9n7jnG/Screen-Shot-2020-12-21-at-5-57-00-PM.png"/> 
+</figure>
+
+<h3 id="locational-eda">Locational EDA</h3>
+<p>Min/max spread on temp and delta shows us that desert locations have the largest spread, whilst coastal have less variation</p>
+<figure>
+    <img src="https://i.ibb.co/S5qqj84/Screen-Shot-2020-12-21-at-6-00-46-PM.png"/> 
+</figure>
+
+<h3 id="applying-data-visualization-to-look-for-interesting-patterns-within-the-data">Applying data visualization to look for interesting patterns within the data.</h3>
+<ul>
+<li>Let&rsquo;s look at the distributions of the attributes to get a better idea of their relationships/spread<br />
+Distribution Notes:</li>
+<li>Max/Min temp show fairly regular distributions and so does Temp. I will visualize this by city below to determine if how we should impute these missing values. Based on that we may drop either: Min/MaxTemp or Temp ~0% missing for all</li>
+<li>Right Skewed: Evap 0-75, Sunshine right skewed but also uniform 2-14, WindGustSpeed slightly right-skewed, 2 km/hr separation between each count. May be standard practice in some locations and not others</li>
+<li>Also Right Skewed: WindSpeed, similar pattern to wind gust speed, cloud (0-8 okta: discrete),</li>
+<li>Left Skewed: Humidity 0-100 very low kurtosis, Pressure (Super high range Log Transform)</li>
+<li>Temp: Approximately Normal: 0-45</li>
+<li>WindDir/WindGustDir random (probably by location)</li>
+</ul>
+<p><figure>
+    <img src="https://i.ibb.co/ZXBLsFy/Screen-Shot-2020-12-21-at-7-30-46-PM.png"/> 
+</figure>
+<br />
+<figure>
+    <img src="https://i.ibb.co/DRy8zYm/Screen-Shot-2020-12-21-at-7-33-00-PM.png"/> 
+</figure>
+<br />
+<figure>
+    <img src="https://i.ibb.co/9TNdn9n/Screen-Shot-2020-12-21-at-7-34-30-PM.png"/> 
+</figure>
+</p>
+<h2 id="data-transformations">Data Transformations:</h2>
+<ul>
+<li>Rainfall is extremely right-skewed, meaning that most days there is between ~ 0 - 20 millimeters of rain.</li>
+<li>The outliers here, however, are so extreme (max 371 mm) that this data was scaled down using logarithmic (base 2)transformation.</li>
+<li>The same was done for evaporation and Pressure (range 970-1040). This will reduce the scale along the x-axis in a way that is much more digestable while using k-nearest neighbors to impute missing values into our model.</li>
+<li>It will also process outliers in our L2 function more efficiently, thus producing more coherent clusters</li>
+</ul>
+<h3 id="rainfall-evaporation-and-pressure-following-logarithmic-transformations">Rainfall, Evaporation and Pressure following Logarithmic Transformations</h3>
+<p><figure>
+    <img src="https://i.ibb.co/nwhMVTP/Screen-Shot-2020-12-21-at-7-36-18-PM.png"/> 
+</figure>
+<br />
+<figure>
+    <img src="https://i.ibb.co/t2kNFgr/Screen-Shot-2020-12-21-at-7-36-55-PM.png"/> 
+</figure>
+<br />
+<figure>
+    <img src="https://i.ibb.co/FqxWKfy/Screen-Shot-2020-12-21-at-7-37-34-PM.png"/> 
+</figure>
+</p>
+<h2 id="dropping-categorical-variables">Dropping Categorical Variables</h2>
+<p>Location, WindDir and WindGustDir were dropped as they don&rsquo;t have a very high correlation to rainfall from our correlation table above. Additionally, to be processed by the kmeans algorithm they would need to be one hot encoded or put into dummy variables in order to be plotted. Following performance evaluation, (with the aformentioned categorical attributes), it was decided that only numeric variables would be useful for the remaining models.</p>
+<h1 id="filling-remaining-numerical-nas-with-mice-imputation">Filling remaining numerical NAs with MICE imputation:</h1>
+<p>I&rsquo;ve used multiple imputations to account for the uncertainty association with between each imputation if I were to use KNearest Neighbors. Single imputation doesn&rsquo;t acount for that so MICE will help us find the most likely value overall.</p>
+<p>MICE essentially uses multiple regression to map the distributions of each value in order to accurately impute what is missing. I&rsquo;ve found that this method is very flexible and much less time consuming than if I were to use KNearest Neighbors.</p>
+<p>Although Evaporation, Pressure, Cloud and Sunshine constitute a large portion of missing values in our data set, they do show a strong correlation to rainfall. I initially tried dropping these from attributes from my model, however recall was notably increased after I decided to use this imputation measure.</p>
+<h4 id="finally-rounding-variables-like-cloud-and-sunshine-to-nearest-integers-and-ensuring-that-our-variables-upperlower-limits-are-not-exceeded">Finally rounding variables like cloud and sunshine to nearest integers and ensuring that our variables upper/lower limits are not exceeded.</h4>
+<ul>
+<li>i.e.. can&rsquo;t have &lt; 0 hours of sunshine or over 100% humidity in an observation</li>
+</ul>
+<figure>
+    <img src="https://i.ibb.co/L1NTYr3/Screen-Shot-2020-12-21-at-6-21-37-PM.png"/> 
+</figure>
+
+<h3 id="finally-we-map-raintoday-and-raintomorrow-to-boolean-values-for-our-clustering-models-to-process">Finally we map RainToday and RainTomorrow to boolean values for our clustering models to process</h3>
+<figure>
+    <img src="https://i.ibb.co/3cTgJBN/Screen-Shot-2020-12-21-at-6-23-22-PM.png"/> 
+</figure>
+
+<h1 id="section-2-modeling-build-tune-and-evaluate-cluster-analysis-and-decision-tree-models">Section 2: Modeling Build, tune and evaluate cluster analysis and decision tree models</h1>
+<h3 id="k-means-algorithm">K Means Algorithm:</h3>
+<ul>
+<li>K-Means is a simple and efficient clustering function that is distance based.</li>
+</ul>
+<p>The objective of k-means is to minimize the intra-class variance (sum of squared distances from each data point being clustered) and to produce the most coherent clusters.</p>
+<p>Following clustering, we would like to measure things such as precision, recall and accuracy of our model.</p>
+<ul>
+<li>Precision corresponds to the True Positive rate over all observations that were classified as positive</li>
+<li>Recall corresponds to the true positive rate over the (true positive and False Negative) cases</li>
+</ul>
+<h4 id="note-the-goal-for-every-model-is-to-maximize-recall">NOTE: The goal for every model is to maximize recall.</h4>
+<p>We would like to maximize recall in these models because it is better to predict for rain when it doesn&rsquo;t rather than predict no for rain when it actually does. If people we were expecting to play golf and our model predicted blue skies the following day then it would be problematic if it rained. In our model the cost of False Positives isn&rsquo;t as high as false negatives. This idea will be elaborated later in the model.</p>
+<ul>
+<li>KMeans is an unsupervised learning algorithm so the model will not distinguish between what our target variables actually are. This means that if we are getting extremely low accuracy/precision/recall scores for our model we can simply flip the variable that the model is predicting on to vastly improve the performance.</li>
+</ul>
+<h1 id="running-our-baseline-kmeans-model">Running our baseline kmeans model:</h1>
+<ul>
+<li>A basline kmeans model was constructed using all numeric variables in the data set. Keep in mind that RainToday/Tomorrow was mapped to contain a value of either 0 for 1 as this is required of distance based algorithms.</li>
+<li>Testing size was set to 30% of our original data given that it didn&rsquo;t tend to overfit the model (in the case where training size would be too high i.e. 95%)</li>
+<li>Categorical variables were justifiably removed in these models because one hot encoded variables could create densely populated regions that pull the centroid towards them (if certain locations take measurements where others do not). This would introduce unneeded complexity that obfuscates our results.</li>
+</ul>
+<h3 id="kmeans-clustering-elbow-curve">KMeans Clustering Elbow curve</h3>
+<figure>
+    <img src="https://i.ibb.co/GJ91Ryp/Screen-Shot-2020-12-21-at-6-27-18-PM.png"/> 
+</figure>
+
+<h3 id="this-elbow-curve-demonstrates-that-the-optimal-number-of-cluster-for-this-algorithm-being--2">This elbow curve demonstrates that the optimal number of cluster for this algorithm being = 2.</h3>
+<p>This is a good sign given that this is an unsupervised algorithm and we only have two options for whether or not it rains tomorrow. This model was plotted using the distortion or average squared distances from each cluster center. This distance is measured using the euclidean distance function by default. The inflection point. Once the distortion starts decreasing in a linear fashion we would like to conclude the optimal number of clusters, k. This is a good sign that our data has been properly cleaned and that our clusters our cohesive enough around their respective centroids that they can have models run on them to test performance.</p>
+<h3 id="utilizing-gridsearchcv-in-order-to-optimize-our-recall-score">Utilizing GridSearchCV in order to optimize our recall score</h3>
+<figure>
+    <img src="https://i.ibb.co/GsTQYSP/Screen-Shot-2020-12-21-at-6-29-43-PM.png"/> 
+</figure>
+
+<h3 id="fitting-our-kmeans-model-to-the-training-data-the-hyperparameters-were-chosen-using-gridsearchcv-in-order-to-optimize-the-recall-of-our-model">Fitting our kmeans model to the training data. The hyperparameters were chosen using GridSearchCV in order to optimize the recall of our model.¶</h3>
+<ul>
+<li>init = k-means ++: This ensures that bad centroids aren&rsquo;t randomly chosen at the beginning of the algorithm with respect to optimal clustering.</li>
+<li>algorithm = &lsquo;auto&rsquo;, this is automatically set to elkan given that our data is densely clustered together, if our data was organized sparsely than the full algorithm would be called</li>
+<li>precompute_distances = &lsquo;auto&rsquo; means that we simply are not precomputing distances too much RAM is required.<br />
+<figure>
+    <img src="https://i.ibb.co/bL51VZQ/Screen-Shot-2020-12-21-at-6-31-20-PM.png"/> 
+</figure>
+</li>
+</ul>
+<h2 id="classification-report">Classification Report:</h2>
+<p>The kmeans has a recall of 78% and an accuracy of 72%. n was set to 2 (binary classification) and n_init is the number of times the cluster actually runs the seed. Recall was optimized in this model which is good given that we want to minimize the possibility of False Negatives being thrown. This does however, compromise our precision at 68% for true cases. The f1 score represents the harmonic mean between precision and recall which shows the overall stability of the model. This model has done a descent job at clustering given that this data was not scaled.</p>
+<p>The data was not scaled because variables that have a large range such as Pressure have high utility in how the algorithm decides to determine it&rsquo;s clusters. The logarithmic transformations also proved to be sufficient in accounting for the variance between each attribute.</p>
+<figure>
+    <img src="https://i.ibb.co/X5d6T5Z/Screen-Shot-2020-12-21-at-6-34-01-PM.png"/> 
+</figure>
+
+<figure>
+    <img src="https://i.ibb.co/1rkZ3CC/Screen-Shot-2020-12-21-at-6-34-58-PM.png"/> 
+</figure>
+
+<h2 id="hierarchical-agglomerative-clustering-on-our-cleaned-training-dataframe">Hierarchical Agglomerative Clustering on our cleaned Training dataframe</h2>
+<p>This method of clustering aims to build groups in the form of hierarchies. In general, merges and splits of this model are greedily decided which can be represented in the form of a dendrogram. The Kmeans distance function is defaultly set to &lsquo;l2 or euclidean&rsquo; however HAC can be manually changed to manhattan or minkowski.</p>
+<p>For this case, I&rsquo;ve decided to used a euclidean based distance function and ward linkage (which minimizes the variance of the clusters being merged). This is necessary in order to give us clusters that are more coherent in form. If things like Pressure or imputed values of sunshine/cloud are returning outliers, than we want to minimize the variance between each data point since we are only dealing with two clusters.</p>
+<p>The standard algorithm has a time complexity of O(N)^2 which is why the model needed to be trained in google collab. Again, this data was not scaled given that precision and recall scores reverted to that of a coin flip which reflects that our data set was properly scaled and cleaned to begin with.</p>
+<p><figure>
+    <img src="https://i.ibb.co/VDH0wHb/Screen-Shot-2020-12-21-at-6-37-42-PM.png"/> 
+</figure>
+<br />
+<figure>
+    <img src="https://i.ibb.co/g6xCdTD/Screen-Shot-2020-12-21-at-6-39-17-PM.png"/> 
+</figure>
+</p>
+<h2 id="dendrogram">Dendrogram</h2>
+<figure>
+    <img src="https://i.ibb.co/DV5qDz1/Screen-Shot-2020-12-21-at-7-54-06-PM.png"/> 
+</figure>
+
+<h1 id="decision-tree-classifer">Decision Tree Classifer</h1>
+<figure>
+    <img src="https://i.ibb.co/kGkx5n6/Screen-Shot-2020-12-21-at-6-40-59-PM.png"/> 
+</figure>
+
+<h3 id="following-gridsearch-of-our-decision-tree-we-obtained-the-following-classification-metrics">Following GridSearch of our Decision tree we obtained the following classification metrics</h3>
+<ul>
+<li>Recall: 77%</li>
+<li>Accuracy: 76%</li>
+<li>Precision: 72%</li>
+</ul>
+<h2 id="decision-tree-visualization">Decision Tree Visualization:</h2>
+<figure>
+    <img src="https://i.ibb.co/wpCKrP0/Screen-Shot-2020-12-21-at-6-46-16-PM.png"/> 
+</figure>
+
+<p>Optimization: The gini index (measures split quality) was able to help bring our model accuracy and recall up. max_depth reflects the maximum number of levels a decision tree can be split by. This limits our model. max_leaf nodes also helped us build a tree with n best nodes to reduce impurity.</p>
+<p>Humidity was selected as the parent node given that it had the highest gini coefficient. This makes sense given that high humidity &gt;= 65 in this case almost always leads to rain. Nodes like sunshine, and pressure make me relieved that I did not drop them after our data was cleaned. Although they contained a high amount of missing values, their proper imputation still lead to our model being more accurate overall. Categorical variables were dropped given that I did not want our tree to have two many nodes but its min_split of 2 (following gridSearchCV) is self explanatory.</p>
+<h2 id="roc-auc-for-best-decision-tree">ROC-AUC for Best Decision Tree</h2>
+<figure>
+    <img src="https://i.ibb.co/G563CNt/Screen-Shot-2020-12-21-at-6-49-24-PM.png"/> 
+</figure>
+
+<ul>
+<li>This model has 83% area under it&rsquo;s curve indicating the DT is much more accurate than if we were to simply flip a coin on the weather tomorrow.</li>
+</ul>
+<figure>
+    <img src="https://i.ibb.co/KV4d0sW/Screen-Shot-2020-12-21-at-6-50-52-PM.png"/> 
+</figure>
+
+<h1 id="section-3-prediction-and-interpretation">Section 3: Prediction and Interpretation</h1>
+<p>After Transforming the and making predictions on the testing data, each model was able to commensurately make predictions as to how they did on the training data.</p>
+<h2 id="decision-tree-testing-accuracy">Decision Tree Testing Accuracy:</h2>
+<ul>
+<li>Recall: 78%</li>
+<li>Accuracy: 79%</li>
+<li>Precision: 70%</li>
+</ul>
+<h2 id="hac-testing-accuracy">HAC Testing Accuracy:</h2>
+<ul>
+<li>Recall: 72%</li>
+<li>Accuracy: 69%</li>
+<li>Precision: 73%</li>
+</ul>
+<h2 id="kmeans-testing-accuracy">KMeans Testing Accuracy:</h2>
+<ul>
+<li>Recall: 80%</li>
+<li>Accuracy: 74%</li>
+<li>Precision: 65%</li>
+</ul>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/" >
+    &copy;  Ryan Ondocin 2021 
+  </a>
+    <div>
+
+
+
+
+
+
+
+<a href="https://www.linkedin.com/in/ryan-ondocin-5699b7138/" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+<a href="https://github.com/Ryanondocin2019?tab=repositories" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

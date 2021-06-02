@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Bokeh Plot Visualizing the transmission of Covid-Related tweets | Ryan Ondocin</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Project 1: Clustering COVID-19 Tweets">
+    <meta name="generator" content="Hugo 0.79.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Bokeh Plot Visualizing the transmission of Covid-Related tweets" />
+<meta property="og:description" content="Project 1: Clustering COVID-19 Tweets" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/post/covid/" />
+<meta property="article:published_time" content="2020-05-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-05-09T00:00:00+00:00" />
+<meta itemprop="name" content="Bokeh Plot Visualizing the transmission of Covid-Related tweets">
+<meta itemprop="description" content="Project 1: Clustering COVID-19 Tweets">
+<meta itemprop="datePublished" content="2020-05-09T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-05-09T00:00:00+00:00" />
+<meta itemprop="wordCount" content="3491">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Bokeh Plot Visualizing the transmission of Covid-Related tweets"/>
+<meta name="twitter:description" content="Project 1: Clustering COVID-19 Tweets"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  
+  
+  <header class="cover bg-top" style="background-image: url('https://i.ibb.co/0KvGvBL/Screen-Shot-2020-12-16-at-11-40-13-PM.png');">
+    <div class="pb3-m pb6-l bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Ryan Ondocin
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/contact/" title="Experience page">
+              Experience
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/post/" title="Projects page">
+              Projects
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+<a href="https://www.linkedin.com/in/ryan-ondocin-5699b7138/" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+<a href="https://github.com/Ryanondocin2019?tab=repositories" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">Bokeh Plot Visualizing the transmission of Covid-Related tweets</h1>
+          
+            <h2 class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
+              Project 1: Clustering COVID-19 Tweets
+            </h2>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph6">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        PROJECTS
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+
+
+      <h1 class="f1 athelas mt3 mb1">Bokeh Plot Visualizing the transmission of Covid-Related tweets</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-05-09T00:00:00Z">May 9, 2020</time>
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-three-thirds-l"><h1 id="project-overview">Project Overview:</h1>
+<ul>
+<li>Used K-means and t-SNE to visually represent the transmission of COVID-19 tweets from May 1st to May 5th, 2020</li>
+<li>An interactive Bokeh plot was created to explore and investigate the transmission of textually based COVID-19 clusters</li>
+</ul>
+<p>Following LDA the top notable topics for covid tweets were as follows:</p>
+<ul>
+<li>&lsquo;rush&rsquo;</li>
+<li>&lsquo;reopen&rsquo;</li>
+<li>&lsquo;bad&rsquo;</li>
+<li>&lsquo;tucker&rsquo;</li>
+<li>&lsquo;chinese&rsquo;</li>
+<li>&lsquo;country&rsquo;</li>
+<li>&lsquo;die&rsquo;</li>
+<li>&lsquo;disease&rsquo;</li>
+<li>&lsquo;carlson&rsquo;</li>
+</ul>
+<figure>
+    <img src="https://i.ibb.co/vDcJj72/Screen-Shot-2020-12-19-at-12-25-56-AM.png"/> <figcaption>
+            <h4>t-SNE plot with KMeans labels</h4>
+        </figcaption>
+</figure>
+
+<h1 id="link-to-interactive-plot">Link to interactive Plot:</h1>
+<p><a href="https://ryanondocin2019.github.io/">https://ryanondocin2019.github.io/</a></p>
+<h1 id="abstract">Abstract</h1>
+<p>Given the vast influx of information surrounding the COVID-19 pandemic and its exponential<br />
+transmission via various social networking platforms, it is difficult for users to coherently<br />
+process all of the surrounding buzz. Social media sites such as Facebook and Twitter generate<br />
+ad-revenue based on user engagement, which allows for rumors and misinformation to spread<br />
+like wildfire. Due to the broad scope and lack of relevantly labeled data, we will not focus on<br />
+identifying misinformation. Instead, we will attempt to give the user a new point-of-reference for<br />
+digesting social media.<br />
+By topically clustering tweets via the use of a variety of NLP and ML techniques, we will offer a<br />
+new lens into the COVID-19 pandemic that can help users digest information in a much simpler<br />
+manner. The interactive bokeh plot we create will aid in understanding the information dynamics<br />
+between Twitter users and the coronavirus. Disclaimer: Our modeling process was inspired by a<br />
+publication on Covid-19 Literature Clustering. [3] Many of our ideas were molded from their<br />
+works on health-care literature made available in the COVID-19 Research Dataset Challenge on<br />
+Kaggle.</p>
+<h1 id="introduction">Introduction</h1>
+<p>Since the end of January, New Coronary Pneumonia (COVID-19) has become the<br />
+epicenter of discussion at home and abroad. The virus has claimed over a quarter million lives<br />
+(as of May 7, 2020, [2]) devastated world economies and raised questions between trusted<br />
+authorities (WHO, CDC) and the people affected by their policies, thus changing the dynamic in<br />
+how people interact both on social media and in-person. Terabytes of data are generated each day<br />
+by Twitter, Facebook and Instagram. Such platforms have become a valuable source of insight<br />
+into studying the information flow of these dire times. We will visually cluster some of the<br />
+tweets being shared on Twitter regarding COVID via K-Means. This approach can be seen as a<br />
+means of noise reduction amidst the deafening social buzz of the virus. Relying on metadata<br />
+(retweets/mentions/location/favorites) could deduct from the uniquely text-based approach we<br />
+are attempting but it could serve in validating our findings. This philosophy allows us to fully<br />
+leverage NLP techniques that can be integrated into an unsupervised learning algorithm to<br />
+visualize tweets in a nuanced way. This is a refreshing vantage point for viewing COVID data to<br />
+help visualize social media in a time of crisis.</p>
+<h1 id="twitter-data-vs-regular-text">Twitter Data vs. Regular Text</h1>
+<p>Tweets are highly distinguished from regular textual data given their 140 character-limit and<br />
+ubiquitous use of slang, hashtags, and emojis. Furthermore, the use of embedded metadata such<br />
+as hyper-links, GIFS, and images enables users to devour a higher volume of content much faster<br />
+than ever before. Twitter’s platform has effectively restructured the way in which we process<br />
+data: rewarding users with the currency of retweets, favorites, and verification. This change calls<br />
+for a few fundamentally different approaches to traditional NLP techniques to help us understand<br />
+information transmission. We will elaborate on this idea throughout the course of this work.</p>
+<h1 id="web-scraping-and-data-quality">Web scraping and Data Quality</h1>
+<p>Twitter’s API was accessed via tweepy. This library allows for the retrieval of 1500<br />
+tweets every 15 minutes. Thus, every time the search command was executed the data frame was<br />
+changed. Data was simply filtered by the ‘coronavirus’ search word. This API searches against a<br />
+sampling of tweets published within the last week. The selected time frame is arbitrary and can<br />
+be manipulated but will play a key role in the analysis of our unsupervised learning algorithm.<br />
+The standard search API focuses on relevance and not completeness. Hence, some tweets<br />
+have missing information. Complete web crawls can be obtained using a premium version of the<br />
+search API which has a pay per use framework. For this reason, we are going to focus solely on<br />
+the free version. Figure 1 below shows our initial data frame after web-crawling twitter. Notice<br />
+how all retweets (RT) end with “&hellip;”. Once exported to CSV the “&hellip;” is replaced with an ellipsis<br />
+character: Ä¶. The full version of the text can be accessed using search.api, however only 100<br />
+search results appear at a time. This is one of the major limitations of our study and although we<br />
+compromise information loss, we elected to work with truncated tweets due to sheer volume.</p>
+<figure>
+    <img src="https://i.ibb.co/dg82mzp/Screen-Shot-2020-12-19-at-12-06-56-AM.png"/> <figcaption>
+            <h4>Initial Look at our Data Frame</h4>
+        </figcaption>
+</figure>
+
+<p>Instantly, we can see that tweets are rife with emojis, special characters, and hyperlinks.<br />
+These will be removed in the preprocessing step. Also, note the prevalence of retweeted data.<br />
+This speaks volumes to the ecosystem of COVID related data. At the click of a button, users can<br />
+garner more attention than originally formatted tweets. Users tend to gravitate towards statistics<br />
+regarding the virus and embedded metadata(videos/images/urls) which is logical during these<br />
+times. Figure 1 also suggests the sparsity of locational data (480 missing). Since locational data<br />
+was collected from manually entered user bios, we saw a lot of variance.</p>
+<h1 id="preprocessing-and-feature-engineering">Preprocessing and Feature Engineering</h1>
+<p>We are not reinventing the wheel in terms of preprocessing Twitter data. Numerous NLP<br />
+publications regarding Twitter preprocessing refer to boilerplate helper functions for cleaning<br />
+tweets.[4] Combining the use of regular expressions to address the formatting styles of Covid-19<br />
+tweets, we have developed the following:</p>
+<figure>
+    <img src="https://i.ibb.co/r5MGHFk/Screen-Shot-2020-12-19-at-12-08-46-AM.png"/> <figcaption>
+            <h4>Text Cleaning Template</h4>
+        </figcaption>
+</figure>
+
+<p>Hyperlinks, special characters, and emojis were removed. Due to the white-space generated,<br />
+white spaces and newline characters also needed to be filtered out. The data was lower-cased as a<br />
+means of standardizing our data to aid in initial NLP preprocessing.</p>
+<h1 id="a-cursory-glance-at-tweet-sentiment-via-text-blob">A Cursory Glance at Tweet Sentiment via Text Blob</h1>
+<p>Instead of training a classifier (Naive Bayes/Gradient Boosting Machine) to identify the<br />
+sentiment of tweets on a granular scale (disgust, anxiety, positive &hellip;) which would require vast<br />
+amounts of labeled data, we decided to settle on TextBlob to scale tweets based on polarity and<br />
+subjectivity between 0 and 1. This could help our investigation of clustered data in terms of<br />
+gauging some high-level sentimental overview of tweets that garnered the most attention.<br />
+Although this is not the primary focus of this project, it&rsquo;s extensive research has inclined us to<br />
+approach this problem from a point of topic modeling. The user can then form their own<br />
+opinions on this topic and choose if they would like to hear more about it. Sentiment analysis<br />
+would be a wonderful thing to geolocationally map over time, however, we feel that work done<br />
+by the CoMune lab [2] (populational emotional state, bot/human classification, news reliability)<br />
+has been a phenomenal academic venture that has already been covered in depth.</p>
+<p>Hashtags: Hashtags allow the author of a tweet to distill the main points they are trying to<br />
+ascertain. Twitter uses hashtags to rank content by keywords. [5] Although many empty fields<br />
+are found following the extraction, they could provide a manual way for our group to intuitively<br />
+label the gist of each tweet, instantly. For example, if a tweet contains [#COVID,#conspiracy] vs<br />
+[#PrayforOurHealthProfessionals, &ldquo;#Coronavirus] then we have two starkly different viewpoints<br />
+(most likely) that we can distinguish with #hashtags over the content of the tweet itself. This was<br />
+an interesting idea to wrestle with throughout this project. Also, it was observed that there were<br />
+many variants of COVID 19 hashtags like #COVID_19, #COVID, #covid19, #Covid_19,<br />
+#COVID19, and others.</p>
+<h1 id="data-analysis">Data Analysis</h1>
+<figure>
+    <img src="https://i.ibb.co/JK78vxX/Screen-Shot-2020-12-19-at-12-10-51-AM.png"/> <figcaption>
+            <h4>Top Ten Users by Tweet Frequency</h4>
+        </figcaption>
+</figure>
+
+<p>Visualizing the top ten twitter users by frequency can help us in identifying potential<br />
+social bots. If a user has generated 200 tweets within the past hour, then this would characterize<br />
+possible bot activity. Websites such as Hoaxy have also created bot classifiers based on metadata<br />
+such as number of followers, retweets, and activity coming from the account. According to the<br />
+CoMune Lab, 60% of misinformation spread on Twitter’s platform regarding the virus is due to<br />
+the activity of social bots. [2] Although this is not the scope of this project, it is an idea we will<br />
+keep in mind for understanding the platform.</p>
+<h1 id="visualizing-unique-words-in-our-data">Visualizing Unique Words in Our Data</h1>
+<p><figure>
+    <img src="https://i.ibb.co/1s85qHn/Screen-Shot-2020-12-19-at-12-12-19-AM.png"/> 
+</figure>
+<br />
+Plotting the number of unique words in our data shows an approximate bimodal<br />
+distribution split between 3 and 15 words per tweet. They are terse and to the point, generally.<br />
+Following clustering, we will perhaps be able to identify the reason for this bimodal distribution.<br />
+We suspect that it has been generated from a popular retweet that has been circulated in our time<br />
+frame.</p>
+<h1 id="word-frequency-distribution">Word Frequency Distribution:</h1>
+<figure>
+    <img src="https://i.ibb.co/020L8CZ/Screen-Shot-2020-12-19-at-12-13-54-AM.png"/> <figcaption>
+            <h4>Word Frequency Distribution</h4>
+        </figcaption>
+</figure>
+
+<p>A Frequency distribution of the data shows a preponderance of stopwords and<br />
+coronavirus variations that need to be removed. There are certain words we would like to remain<br />
+in our analysis such as Arizona, died, and state. These are topic-oriented, contextual clues that<br />
+could help with visualization. To finish our preprocessing, we will discuss spaCy for stopword<br />
+removal and tokenization.</p>
+<h1 id="spacy">SpaCy</h1>
+<p>SpaCy is a natural language processing toolkit, born in 2014 with industrial-level speed<br />
+and versatility. Cython is widely used in spaCy to improve the performance of related modules.<br />
+Contrasting to NLTK, spaCy is an objective-based language processing toolkit which is less<br />
+time-consuming in dealing with short messages compared with NLTK. SpaCy was useful for<br />
+quickly preparing the rest of our data for analysis. En_core_web_sm is a pre-trained spaCy model that contains GloVe vectors trained on Common Crawl. [4] This was useful in quickly<br />
+tokenizing and lemmatizing tweets to assign context-specific token vectors to the data. It can<br />
+also be quite useful for assigning POS tags, dependency parsers, and named entities to datasets.<br />
+SpaCy can make many of the time-consuming decisions for you that NLTK cannot afford in<br />
+some cases, which is why it was chosen.</p>
+<h1 id="custom-stop-word-removal">Custom Stop Word Removal</h1>
+<p>We filtered out all words that have to do with coronavirus in order to understand the discussion<br />
+surrounding it. In doing so, we lose some of the contexts of word features, however, we consider<br />
+the context in order to graphically represent our data. Following stop word removal we used<br />
+SpaCy to lemmatize. Some final thoughts on the frequency distribution are bulleted below.<br />
+<figure>
+    <img src="https://i.ibb.co/r5ps9gV/download.png"/> <figcaption>
+            <h4>COVID-19 Tweet Word Frequency Distribution</h4>
+        </figcaption>
+</figure>
+</p>
+<h3 id="notes">Notes:</h3>
+<ul>
+<li>Hasn’t removed ellipsis “&hellip;”</li>
+<li>Death, cases, and tests are very common keywords</li>
+<li>“ ‘ ” certain special characters could use further cleaning but serve fine for this report</li>
+<li>Lots of government-related words that occurred frequently throughout tweets</li>
+</ul>
+<h1 id="machine-learning-approaches">Machine Learning Approaches</h1>
+<p>After the preprocessing step we decided to move into machine learning approaches for our<br />
+unsupervised learning algorithm to visualize the transmission of information. We begin by<br />
+vectorizing the text data.</p>
+<h1 id="vectorization-tf-idfbow">Vectorization (TF-IDF/BOW)</h1>
+<p>To find a low-dimensional representation of our tweets, we elected to use Tf-IDf in conjunction<br />
+with t-SNE. Before diving in, let us take a look at a simpler vectorization approach. In general,<br />
+text documents shouldn’t be vectorized into a sparse matrix due to the possibility of high<br />
+computational loss. Additionally, most linguistic information should remain after this process.<br />
+For this, we could possibly implement a word embedding technique (word2vec, GloVe).</p>
+<h1 id="tf-idf">TF-IDF</h1>
+<p>An issue with the Bag Of Words approach is that each word has a similar significance<br />
+considering its weight amongst all documents. To reckon with this, the TF-IDF approach tends to<br />
+make sure that more weight should be given to words or terms which are more frequent<br />
+throughout the document(where the frequency of these words or the term is comparatively<br />
+lower). The term frequency can thus be calculated as:</p>
+<figure>
+    <img src="https://i.ibb.co/yYMzYS2/Screen-Shot-2020-12-19-at-12-17-58-AM.png"/> <figcaption>
+            <h4>Term Frequency Equation</h4>
+        </figcaption>
+</figure>
+
+<p>The Inverse Document Frequency or IDF for a particular word will be the total number of<br />
+documents, divided by only the documents in which that specific word is found. To reduce the<br />
+effect of this division, we calculate the logarithm of its ratio. The Inverse Document Frequency<br />
+or IDF can thus be calculated as:</p>
+<figure>
+    <img src="https://i.ibb.co/cJqL4g6/Screen-Shot-2020-12-19-at-12-18-58-AM.png"/> <figcaption>
+            <h4>Inverse Document Frequency</h4>
+        </figcaption>
+</figure>
+
+<p>In summation TF-IDF is a product of the two terms: TF and IDF.<br />
+Following this, our vectorized tweets were ready to have PCA applied.</p>
+<h1 id="dimensionality-reduction-via-pca">Dimensionality reduction via PCA</h1>
+<p>Principal Component Analysis was used to reduce the dimensions of our Tf-Idf vectorized<br />
+features while maintaining 90% variance. This was lowered from the default value (95%) in<br />
+order to obtain ~ 290 features (opposed to 379). Our data originally contained 1195 features<br />
+(very high), so PCA didn’t compromise the loss of too much information, luckily. 290 features is<br />
+still a relatively large number of dimensions for t-SNE to process however this method was still<br />
+able to remove some noisy outliers from our vectorized tweets to make the clustering process<br />
+more digestible for k-means. [7]</p>
+<h1 id="k-means-clustering">K-Means Clustering</h1>
+<p>This is an unsupervised learning algorithm that will use the elbow curve method to plot<br />
+distortion vs. the number of clusters, K. This allows data to be naturally segregated solely based<br />
+on our vectorized text. The algorithm is distance-based and tries to minimize the SSE (intra or<br />
+within-cluster variation) to produce coherent clusters. For labeled-tweet distinction, k-means<br />
+will be run on the vectorized text. [8]<br />
+Following clustering, we could measure things such as precision, recall, and accuracy of<br />
+our model. K-Means is an unsupervised learning algorithm so the model will not distinguish<br />
+between what the true validity of our class labels actually are. The whole point of this<br />
+experiment is to work without labeled data to view information transmission of tweets purely on<br />
+a textual basis. Therefore, instead of validating our model on things such as LDA key-word topic<br />
+modeling, we created a Bokeh plot that allows us to visually assess the coherency of clusters<br />
+based on content.</p>
+<figure>
+    <img src="https://i.ibb.co/k6SpnPw/Screen-Shot-2020-12-19-at-12-20-31-AM.png"/> <figcaption>
+            <h4>K Means Elbow Plot</h4>
+        </figcaption>
+</figure>
+
+<p>The elbow curve didn’t yield desirable results. We don’t see an extremely clear inflection<br />
+point which is problematic. Instead of extensively grid searching our model, we decided to plot<br />
+out the data using t-SNE to intuitively view the optimal number of clusters. This elbow curve is jagged and suggests that we may want to train the model on a different vectorization technique in<br />
+the future, such as Word2Vec.</p>
+<p>The above figure proposes that K values are optimized between 15-20 clusters. Following<br />
+20 clusters, the decrease in distortion is not as significant. We will use 17 for this model. Given<br />
+that this is an unsupervised algorithm, we may have multiple optimal clusters based on when the<br />
+data was scraped from Twitter [May,1]. As mentioned, we proceeded with the process and<br />
+decided to see how t-SNE was handling our optimal number of clusters.</p>
+<h4 id="t-stochastic-neighbor-embedding">t-Stochastic-Neighbor Embedding</h4>
+<p>was then imported from the sklearn manifold package in<br />
+order to visually map our 290 features onto a 2-dimensional plane. This is done by minimizing<br />
+the KL divergence between joint probabilities of the low-dimensional (1500, 290) and<br />
+high-dimensional embedding (1500,1195). t-SNE&rsquo;s cost function will keep most of the<br />
+context-based word vectors that we want without being too large to process. t-SNE will use the<br />
+original feature vector X(1500,1195) that was obtained via tf-idf on the preprocessed text.<br />
+Following this, we have a visual representation of our tweets!<br />
+Minimization of KL divergence with respect to our observations. It is optimized via gradient<br />
+descent and the result of this is a map that shows similarities between our high-dimensional<br />
+features. [9]<br />
+<figure>
+    <img src="https://i.ibb.co/DRFL0Rz/Screen-Shot-2020-12-19-at-12-24-01-AM.png"/> <figcaption>
+            <h4>t-SNE plot without labels</h4>
+        </figcaption>
+</figure>
+</p>
+<p>The goal of this technique is to reduce our high dimensional feature vector to 2<br />
+dimensions. We can plot the tweets themselves by using these dimensions as x, y coordinates. In<br />
+other words, similar tweets will be closer together, and dissimilar ones farther apart. This<br />
+algorithm has two hyperparameters that we considered for tuning.</p>
+<ul>
+<li>Perplexity: float, optional (default: 30) (number of nearest neighbors: larger number of<br />
+observations usually requires a higher value &gt; 30)<br />
+Perplexity was iteratively tuned and reduced to 10 in order to account for the smaller number of<br />
+observations in our dataset.</li>
+<li>Earl_exaggeration: float, option (default 12):<br />
+Controls coherency of clusters in the space in which they are embedded. It also<br />
+determines the amount of space between them. Higher values correspond to more space between<br />
+clusters within the embedded area. We still wanted some leeway between t-SNE&rsquo;s representation<br />
+and the coherency of clustered tweets, so early_exaggeration was slightly reduced from 12 to 10.<br />
+This resulted in a more balanced model overall that allowed for the possibility of dissimilarity<br />
+between tweets. In other words, RT information would be extremely close in space, but unique<br />
+tweets would have the opportunity to be more spread out.</li>
+</ul>
+<h1 id="t-sne-with-k-means-labels">t-SNE with k-Means labels</h1>
+<figure>
+    <img src="https://i.ibb.co/vDcJj72/Screen-Shot-2020-12-19-at-12-25-56-AM.png"/> <figcaption>
+            <h4>t-SNE plot with KMeans labels</h4>
+        </figcaption>
+</figure>
+
+<p>There are approximately 17 natural clusters that we can instantly recognize. This value<br />
+was used to update our k-means labels to compensate for the inadequacy of our elbow-curve<br />
+method. t-SNE did well in terms of dimensionality reduction, but labeled data generated by k-means could help us in opening up the hood and examining our tweets through a content-based<br />
+lens. Clusters developed by k-means aided in the generation of labels to help visually separate<br />
+tweets containing different feature vectors. Validation, in this experiment, is then intuitive and<br />
+manual. t-SNE clusters could be compared to the color of k-means labels to search for any<br />
+discrepancies. For example, there are some deviations in the label generated by k-means and<br />
+tweets that are spread out in Figure 9 (see orange points w/ label = 2). This occurs because the<br />
+labels and the points do not have proportionate resemblance between themselves and the higher<br />
+dimensional data. This most likely signifies the computational loss we see from tf-Idf<br />
+vectorization. This isn’t all bad considering we simply want popular retweets to have a high<br />
+concentration of coherently clustered and consistently labeled points. Points with more spread<br />
+probably correspond, then, to posts that contain most of the same COVID-related keywords<br />
+(death, cases, tests, trump) but fundamentally different content.</p>
+<h1 id="discussion">Discussion</h1>
+<p>By scraping a few thousand COVID-related tweets within a specified time range we<br />
+hoped to give the reader an idea of information transmission (mostly retweets). Visualizing the<br />
+spread of articles/rumors/stories/opinions during this time of crisis can serve the purpose of noise<br />
+reduction which could ease some of the anxiety we get from social media. The modeling process<br />
+was inspired by techniques used in the COVID-19 Literature Clustering publication, authored by<br />
+Eren, E. Maksim. Solovyev, Nick. Nicholas, and Charles. Raff, Edward [3] The primary<br />
+difference in their work is its application, which clusters academic literature by topic using LDA<br />
+to help health professionals keep up on field-specific information related to the virus. Their idea<br />
+being that by clustering similar research articles they could help simplify the search for related<br />
+publications.</p>
+<p>While some of the modeling and preprocessing techniques were similar to our approach,<br />
+we have modified and repurposed this motivation to understand how Twitter data can be<br />
+clustered within a given time frame. The clustering of tweets can be better represented in the<br />
+form of a labeled plot. t-SNE was used to intuitively visualize the optimal number of clusters in<br />
+our data, which is cheating the model to a certain extent, however, upon further review the<br />
+dimensionality reduction steps seemed to sufficiently cluster together the information in a way<br />
+that was appropriate for visualization. Following PCA and dimensionality reduction, our data<br />
+was mapped from 1195 to 290 to 2 features respectively. Although t-SNE had an extremely high<br />
+number of features to map on the coordinate plane, it didn’t seem to compromise too much<br />
+information in our data.</p>
+<p>To reiterate the limitations of our work, the free version of tweepy only allowed us to<br />
+scrape 1500 tweets every 15 minutes or so, which is a very small number of observations for a<br />
+robust machine-learning algorithm to be trained on. Furthermore, retweets were displayed in a<br />
+truncated mode that was followed by an ellipsis character. Additionally, it was clear that this<br />
+form of sharing was extremely popular in our data. This gave a disproportionate amount of<br />
+weight to retweets given that they contained “&hellip;” even after preprocessing. In the future, more<br />
+extensive data cleaning could be carried out on this work to give us a better idea of the variations<br />
+and additional commentary people use for RTs. The use of tf-Idf for vectorization yielded a<br />
+sparse matrix which is known to have a very high computational loss in the field of textual<br />
+clustering. Perhaps sentiment analysis could’ve been investigated more in depth after<br />
+dimensionality reduction took place but our plates were still full throughout this study. Finally,<br />
+Twitter data is uniquely distinguished from regular text given its ubiquitous use of hashtags,<br />
+slang, and emojis. Perhaps in the future, we could utilize a tool such as VADER as a means of<br />
+processing these emojis to extract more meaningful information from the text. Even in light of all<br />
+of these shortcomings, our exploration still yielded some pretty remarkable results that fascinated<br />
+us time and time again. We will now open up the hood of our model and investigate our<br />
+interactive Bokeh plot to make connections between the apparent clusters generated from t-SNE,<br />
+the k-means labels and the tweets themselves.</p>
+<h4 id="research-gate-publication-httpswwwresearchgatenetpublication341688957_textual_clustering_of_covid-19_tweets">Research Gate Publication: <a href="https://www.researchgate.net/publication/341688957_Textual_Clustering_Of_COVID-19_Tweets">https://www.researchgate.net/publication/341688957_Textual_Clustering_Of_COVID-19_Tweets</a></h4>
+<h4 id="github-project-link-httpsgithubcomryanondocin2019covid-tweet-textual-clustering-kmeanstreemastertextual-clustering-covid19-tweets-nlp-ml">Github Project Link: <a href="https://github.com/Ryanondocin2019/Covid-tweet-textual-clustering-kmeans/tree/master/textual-clustering-covid19-tweets-NLP-ML">https://github.com/Ryanondocin2019/Covid-tweet-textual-clustering-kmeans/tree/master/textual-clustering-covid19-tweets-NLP-ML</a></h4>
+<h2 id="interactive-bokeh-plot">Interactive Bokeh Plot</h2>
+<iframe seamless src="https://ryanondocin2019.github.io/" width="900" height="900"><iframe>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/" >
+    &copy;  Ryan Ondocin 2021 
+  </a>
+    <div>
+
+
+
+
+
+
+
+<a href="https://www.linkedin.com/in/ryan-ondocin-5699b7138/" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+<a href="https://github.com/Ryanondocin2019?tab=repositories" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

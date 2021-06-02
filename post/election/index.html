@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>2020 Election Sentiment Analysis | Ryan Ondocin</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="2020 Election Sentiment Analysis">
+    <meta name="generator" content="Hugo 0.79.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="2020 Election Sentiment Analysis" />
+<meta property="og:description" content="2020 Election Sentiment Analysis" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/post/election/" />
+<meta property="article:published_time" content="2020-12-29T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-12-29T00:00:00+00:00" />
+<meta itemprop="name" content="2020 Election Sentiment Analysis">
+<meta itemprop="description" content="2020 Election Sentiment Analysis">
+<meta itemprop="datePublished" content="2020-12-29T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-12-29T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1301">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="2020 Election Sentiment Analysis"/>
+<meta name="twitter:description" content="2020 Election Sentiment Analysis"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  
+  
+  <header class="cover bg-top" style="background-image: url('https://media.gettyimages.com/photos/united-states-presidential-election-2020-picture-id1270138072?k=6&amp;m=1270138072&amp;s=612x612&amp;w=0&amp;h=tJd6yXS43hHN1cuzrus-AdP4NHG79HIiV0kL__1ePb0=');">
+    <div class="pb3-m pb6-l bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Ryan Ondocin
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/contact/" title="Experience page">
+              Experience
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/post/" title="Projects page">
+              Projects
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+<a href="https://www.linkedin.com/in/ryan-ondocin-5699b7138/" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+<a href="https://github.com/Ryanondocin2019?tab=repositories" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">2020 Election Sentiment Analysis</h1>
+          
+            <h2 class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
+              2020 Election Sentiment Analysis
+            </h2>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph6">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        PROJECTS
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+
+
+      <h1 class="f1 athelas mt3 mb1">2020 Election Sentiment Analysis</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-12-29T00:00:00Z">December 29, 2020</time>
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-three-thirds-l"><p>Github Project: <a href="https://github.com/Ryanondocin2019/Twitter-2020-Election-Analysis-PySpark">https://github.com/Ryanondocin2019/Twitter-2020-Election-Analysis-PySpark</a></p>
+<hr />
+<p>Social media has played an integral role in presidential elections since 2016; with the advent of Cambridge Analytica and nuanced psycho-political campaigning tactics. Twitter can be seen as a platform for candidates and users to gain substantial outreach in order to showcase their views to the world. Thus it is important to analyze and understand the role Twitter can play in gauging sentiment surrounding hot button issues that voters use in deciding which candidate is fit for leading the United States for the next four to eight years.</p>
+<h3 id="abstract">Abstract:</h3>
+<p>The aim of this project was to perform sentiment analysis on tweets pertaining to the 2020 US Presidential election for candidates Joe Biden and Donald Trump. Our objective was to unearth contrasting information in a one week period before and after the election results were announced. Using Principal Component Analysis (PCA) and KMeans clustering, we tried to analyze the presence of polarity or communities in the dataset. Furthermore, we performed a hashtag distribution analysis on our clusters to validate and inspect user sentiment. We applied Logistic Regression and Random Forest Classification to generate the top words, in terms of feature importance, responsible for predicting tweet sentiment and we looked for any change in the top words between these two time periods.</p>
+<p>We also analyzed patterns of outlier users; most of which belonged to either news channels providing constant election updates, or provocative users who were supporting/slandering the two candidates.</p>
+<h3 id="dataset">Dataset:</h3>
+<p>We used tweepy to extract the election data from Twitter. It scrapes the Twitter data based on certain hashtags that we provided such as &ldquo;#TRUMP2020&rdquo;, &ldquo;#BIDENHARRIS&rdquo;, &ldquo;#ELECTION2020&rdquo; along with many more variants. For our analysis, we scraped the data twice: first by taking data from one week before the election and second by using the same script for obtaining tweets from one week after the election results were announced. Before election data consists of 97,200 rows and 7 columns which include: user, id, location, date, favorites count (How many times a tweet has been Favorited), text (tweet content), and a retweet flag which will be either true or false. After election data consists of 45,394 rows.</p>
+<p>Tweepy&rsquo;s standard API only allows users to fetch tweets within the last few years or so and is limited to scraping 18,000 tweets every 15 minutes. Thus, we generated our dataset iteratively by appending the results from these web scraping parameters after each search. It can be noted that we had twice the amount of before election data compared to after the election which could lead to incongruous results; especially when discussing the optimal number of clusters k, from Kmeans. While we acknowledge this potential shortcoming, we feel that both of our primary data sets were large enough to gauge the general pulse of Twitter discussion surrounding the 2020 election.</p>
+<figure>
+    <img src="https://i.ibb.co/XJXVXjd/Screen-Shot-2020-12-17-at-7-14-24-PM.png"/> 
+</figure>
+
+<h3 id="data-preparation">Data Preparation</h3>
+<ul>
+<li>Feature engineering</li>
+<li>User-based hashtage aggregation</li>
+<li>Textblob for label</li>
+</ul>
+<h3 id="machine-learning-models">Machine Learning Models</h3>
+<h4 id="1-principle-component-analysis-pca">1. Principle Component Analysis (PCA)</h4>
+<p>We used Principal Component Analysis (PCA) as a means of dimensionality reduction to understand how principal components contribute to the cumulative sum of variance explained. Looking at both the graphs, we see that around 500 Principal components are required to explain more than 75% of the variance in the before election data and 90% variance after the election. This shows that we have a sufficient amount of variance in the dataset that needs a collective effort of more than 500 Principal components to explain.</p>
+<figure>
+    <img src="https://i.ibb.co/WfYqqbm/Wechat-IMG105.jpg"/> 
+</figure>
+
+<h4 id="2-k-means">2. K-means</h4>
+<p>We used the silhouette scoring approach to select the optimal clusters from the before and after election datasets. Silhouette scoring techniques use a distance-based approach to minimize intra cluster variation. Looking at the change in the optimal number of clusters from K = 2 to K = 4 suggests that there could be more topics of interest after the election. This phenomenon will be further analyzed in the upcoming sections.</p>
+<figure>
+    <img src="https://i.ibb.co/5htWVnq/Wechat-IMG106.jpg"/> 
+</figure>
+
+<ul>
+<li><b>K-means and PCA</b></li>
+</ul>
+<p>After selecting the best clusters that represented our dataset, we combined both the PCA and KMeans analysis for inference. We represented every user on the two-dimensional space formed by the first two principal components and colored them based on the cluster assigned by the KMeans algorithm. We were able to infer interesting points about the outliers in the two-dimensional space. Amongst the outliers were the journalism channels like “ElecCollPolls”, “electionRobot”, “StatesPoll” which were giving constant updates to users regarding the election. There were also users who posted repetitive content in most of their tweets mentioning different people in each one. For e.g., a user @Krishdangal1 tweeted “Why is Joe Biden now promising to do so many things for us and he did nothing last 8 years when he was VP, simply beside making his son- Hunter Biden Rich?” 12 times mentioning different people in each tweet. We expected to find Pro-Biden or Pro-Trump outliers in distinct clusters. Although, every cluster had polar users in its outliers we were not able to conclude satisfactorily that each cluster distinctly represents polar users supporting different candidates. Therefore, we need more historical data to check for any communities in the dataset which could be handled more efficiently by community detection techniques such as the Clique Percolation Method.<br />
+<figure>
+    <img src="https://i.ibb.co/xLTSc5F/Screen-Shot-2020-12-17-at-8-05-08-PM.png"/> 
+</figure>
+</p>
+<h4 id="3-logistic-regression">3. Logistic Regression</h4>
+<p>We used logistic regression to find the most important words for predicting sentiment labels for both of our data sets. To make it easier to train the logistic regression model, we removed the neutral tweets, which don’t have much influence on the sentiment of the tweets.</p>
+<p>For model tuning, we decided to use areaunderROC as the evaluation technique. The reason is that areaunderROC is a measure of how well a parameter can distinguish between two diagnostic groups, which is the same as our goal: we want to ensure that the two target labels are separable. We used a grid search with 3 Fold cross-validation to optimize elasticNetParam (alpha) and regParam (lambda). Based on the tuning result, we used L2 (Ridge Regression) along with lambda = 0.5 to regularize our model.</p>
+<figure>
+    <img src="https://i.ibb.co/f24gqf9/Screen-Shot-2020-12-17-at-7-56-35-PM.png"/> 
+</figure>
+
+<p>It’s interesting to find that the most important word for predicting a positive sentiment label before the election is ‘proud’. There are many cases in which we could argue that this word does carry a positive label but the most common context this word appears in throughout the data set is ‘proud boys’, which on partisan platforms such as Twitter doesn’t always have the best reception. The word ‘right’ is also an interesting observation because it can have three distinct meanings, either indicating a political party, direction, or moral justification. The political context makes the most sense but we don’t have any way of ensuring that the context of words is maintained. The negative words for both datasets make perfect sense which indicates that our model is good at generalizing.</p>
+<h4 id="4-random-forest">4. Random Forest</h4>
+<p>The optimal parameters following a grid search for our Random Forest were maxdepth=9 and numTrees=30 for 3 fold cross-validation. We used the same metric evaluator: areaunderROC as we wanted maximum separability between classes.</p>
+<figure>
+    <img src="https://i.ibb.co/DWKvRnc/Screen-Shot-2020-12-17-at-7-57-31-PM.png"/> 
+</figure>
+
+<p>Random forest showed the most important words for predicting the sentimental label of a tweet, however, it didn’t indicate whether the word was positive or negative which is why these two algorithms can be seen as complementary to one another. We saw a fair amount of overlap of important words from the random forest model with the top words from the logistic regression model. Also, we did not find any striking difference in the most important words before and after the election suggesting the overall usage of words has stayed the same. “Win” is the most important feature for the after election data which correlates to the fact that there would be a lot of discussion on Joe Biden winning the election race. Similarly, “corrupt” is the most important feature before the election result, which might convey a lot of speculation regarding the candidates.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/" >
+    &copy;  Ryan Ondocin 2021 
+  </a>
+    <div>
+
+
+
+
+
+
+
+<a href="https://www.linkedin.com/in/ryan-ondocin-5699b7138/" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+<a href="https://github.com/Ryanondocin2019?tab=repositories" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on Ryan Ondocin</title>
+    <link>https://ryanondocin2020.github.io/ryan_ondocin_portfolio/post/</link>
+    <description>Recent content in Projects on Ryan Ondocin</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 02 Mar 2017 12:00:00 -0500</lastBuildDate><atom:link href="https://ryanondocin2020.github.io/ryan_ondocin_portfolio/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2020 Election Sentiment Analysis</title>
+      <link>https://ryanondocin2020.github.io/ryan_ondocin_portfolio/post/election/</link>
+      <pubDate>Tue, 29 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://ryanondocin2020.github.io/ryan_ondocin_portfolio/post/election/</guid>
+      <description>Github Project: https://github.com/Ryanondocin2019/Twitter-2020-Election-Analysis-PySpark
+Social media has played an integral role in presidential elections since 2016; with the advent of Cambridge Analytica and nuanced psycho-political campaigning tactics. Twitter can be seen as a platform for candidates and users to gain substantial outreach in order to showcase their views to the world. Thus it is important to analyze and understand the role Twitter can play in gauging sentiment surrounding hot button issues that voters use in deciding which candidate is fit for leading the United States for the next four to eight years.</description>
+    </item>
+    
+    <item>
+      <title>Bokeh Plot Visualizing the transmission of Covid-Related tweets</title>
+      <link>https://ryanondocin2020.github.io/ryan_ondocin_portfolio/post/covid/</link>
+      <pubDate>Sat, 09 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://ryanondocin2020.github.io/ryan_ondocin_portfolio/post/covid/</guid>
+      <description>Project Overview:  Used K-means and t-SNE to visually represent the transmission of COVID-19 tweets from May 1st to May 5th, 2020 An interactive Bokeh plot was created to explore and investigate the transmission of textually based COVID-19 clusters  Following LDA the top notable topics for covid tweets were as follows:
+ &amp;lsquo;rush&amp;rsquo; &amp;lsquo;reopen&amp;rsquo; &amp;lsquo;bad&amp;rsquo; &amp;lsquo;tucker&amp;rsquo; &amp;lsquo;chinese&amp;rsquo; &amp;lsquo;country&amp;rsquo; &amp;lsquo;die&amp;rsquo; &amp;lsquo;disease&amp;rsquo; &amp;lsquo;carlson&amp;rsquo;    t-SNE plot with KMeans labels   Link to interactive Plot: https://ryanondocin2019.</description>
+    </item>
+    
+    <item>
+      <title>Weather Prediction using KMeans, HAC and Decision Trees</title>
+      <link>https://ryanondocin2020.github.io/ryan_ondocin_portfolio/post/weather/</link>
+      <pubDate>Thu, 05 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://ryanondocin2020.github.io/ryan_ondocin_portfolio/post/weather/</guid>
+      <description>Brief Overview: This project deals with Weather Forecating data recorded from 9am to the following day (9am) throughout 49 different locations in Australia. We will use Kmeans, Hierarchical Agglomerative Clustering and Decision Trees to predict whether or not it will rain the following day. Even with my tenuous grasp of meteorology, I believe that components such as humidity, pressure, and location will be key players in predicting our target variable, RainTomorrow.</description>
+    </item>
+    
+    <item>
+      <title>The Science of Spotify via Tableau and Machine Learning</title>
+      <link>https://ryanondocin2020.github.io/ryan_ondocin_portfolio/post/tableau/</link>
+      <pubDate>Wed, 21 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://ryanondocin2020.github.io/ryan_ondocin_portfolio/post/tableau/</guid>
+      <description>Used Python and Tableau to combine my passion for making music with Data Science Created dashboards that allow me to compare my song&amp;rsquo;s streams by country, music store, and net sales Webscraped Spotify&amp;rsquo;s API using the SpotiPy package from python in order to obtain song-related metadata from some of my favorite artists The dashboard created as a result allows users to compare the audio features [danceability, tempo.. etc.] of my songs to the likes of musicians that I&amp;rsquo;ve always looked up to  Streaming Sale Analysis: https://public.</description>
+    </item>
+    
+    <item>
+      <title>Blockchain Virtual Escape Room</title>
+      <link>https://ryanondocin2020.github.io/ryan_ondocin_portfolio/post/ver/</link>
+      <pubDate>Fri, 03 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://ryanondocin2020.github.io/ryan_ondocin_portfolio/post/ver/</guid>
+      <description>Created a virtual escape room using google slides to teach students about blockhcain. This mystery follows a scandal on what was once the world&amp;rsquo;s largest illegal drug marketplaces on the dark web. It harnesses real life clues from the FBIs investigation along with interactive quizzes and visualizations to help participants understand core components of blockchain technology. It’s an enthralling adventure from start to finish and is currently being licensed by Syracuse University for educational use in the future.</description>
+    </item>
+    
+    <item>
+      <title>Cardiac Disease Prediction Models</title>
+      <link>https://ryanondocin2020.github.io/ryan_ondocin_portfolio/post/diseases/</link>
+      <pubDate>Mon, 25 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://ryanondocin2020.github.io/ryan_ondocin_portfolio/post/diseases/</guid>
+      <description>Brief Overview: This project deals with Naive Bayes Classifiers, K Nearest Neighbors, Support Vector Machines(with both linear and non-linear kernel functions), Random Forest and Gradient Boosting Classifier&amp;rsquo;s to build a disease diagnosis model. It is a binary classification problem to predict whether or not a patient has a certain unspecified disease.
+Training Data Attributes:  Age: in years Gender: male/female Height: in unit of cm Weight: in unit of kg Low Blood Pressure: lower bound of blood pressure measurement High Blood Pressure: higher bound of blood pressure measurement Cholesterol: three cholesteral levels Glucose: three glucose levels Smoke: 1/0 regarding if the patient smokes Alcohol: 1/0 regarding if the patient drinks alcohol Exercise: 1/0 regarding if the patient exercises regularly Disease: The binary target variable.</description>
+    </item>
+    
+  </channel>
+</rss>
